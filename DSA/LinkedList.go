@@ -20,28 +20,27 @@ func main() {
 	newList.printList()
 }
 
-func (L *Linked) addNode(x int) {
-	newNode := Node{data: x}
-	if L.head != nil {
+func (L *Linked) addNode(val int) {
+	newNode := Node{data: val}
+	if L.head != nil { // checking to see if there is currently a head node
 		newNode.next = L.head
 		L.head = &newNode
 		L.length++
-		fmt.Println("added to list")
-	} else {
+	} else { // creates head node in case the list is empty
 		L.head = &newNode
 		L.length++
-		fmt.Println("added to list")
+	}
+}
+
+func (L *Linked) printList() {
+	if L.head == nil { //checking for nodes in list
+		fmt.Println("empty list")
+	} else {
+		currentNode := L.head // sets current node equal to the head of the list
+		for currentNode != nil {
+			fmt.Println(currentNode.data)
+			currentNode = currentNode.next
+		}
 	}
 
-}
-func (L *Linked) printList() {
-	if L.head == nil {
-		fmt.Println("Empty list")
-		return
-	}
-	currentNode := L.head
-	for currentNode != nil {
-		fmt.Println(currentNode.data)
-		currentNode = currentNode.next
-	}
 }
